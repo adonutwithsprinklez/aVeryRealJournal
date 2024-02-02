@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Very Real Journal</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- The following div is the header of the application -->
+    <div id="header">
+        <center>
+            <h1>A Very Real Journal</h1>
+            <br />
+            <nav id="mainNavbar">
+                <!-- <a href="#" onclick="app.switchMenu(0)">Main</a> -->
+                <!-- <a href="#" onclick="app.switchMenu(1)">First Time</a> -->
+                <a href="#" onclick="app.switchMenu(2)">Generate</a>
+                <a href="#" onclick="app.switchMenu(4)">Journal</a>
+                <!-- <a href="#" onclick="app.switchMenu(3)">Settings</a> -->
+            </nav>
+        </center>
+    </div>
+
+    <div id="main">
+        <!-- The following div id the main application UI. It starts off hidden until the Application class displays it -->
+        <div id="app" style="display: none;">
+            <h2 id="menuName"></h2>
+            <br />
+            <!-- The following div is the main menu
+                The purpose of this menu is to simply give an explanation of the application and what it does.
+                Maybe give a few examples of how I personally use it.
+            -->
+            <div id="menu_main" style="display: none;">
+                <p>Test 123, this is the main menu</p>
+            </div>
+
+            <!-- The following div is the first time startup menu -->
+            <div id="menu_firstTime" style="display: none;">
+                <p>Test 123, this is the first time menu</p>
+            </div>
+
+            <!-- The following div is the core journaling menu -->
+            <div id="menu_journal" style="display: none;">
+                <div id="menu_settings">
+                    <div class="input-container">
+                        <label>Setting:</label>
+                        <select name="Setting" onchange="app.onSettingChange();" id="input_setting_select"></select>
+                    </div>
+                    <div class="input-container">
+                        <label>Time:</label>
+                        <select name="Time" id="input_time_select"></select>
+                        <label>Randomize: </label>
+                        <input type="checkbox" id="input_time_randomize" checked="true" />
+                    </div>
+                    <div class="input-container">
+                        <label>Action Theme:</label>
+                        <select name="Action" id="input_action_select"></select>
+                        <label>Randomize: </label>
+                        <input type="checkbox" id="input_action_randomize" checked="true" />
+                    </div>
+                    <div class="input-container">
+                        <label>Allow Location Generation: </label>
+                        <input type="checkbox" id="input_location_randomize" checked="true" />
+                    </div>
+                    <div class="input-container">
+                        <label>Allow Character Generation: </label>
+                        <input type="checkbox" id="input_people_randomize" checked="true" />
+                    </div>
+                    <div class="input-container">
+                        <label>Allow  Item Generation: </label>
+                        <input type="checkbox" id="input_items_randomize" checked="true" />
+                    </div>
+                </div>
+                <br />
+                <button onclick="app.generateEvent();">Generate Prompt</button>
+                <br />
+                <br />
+                <p id="generatedEventText" style="display: none;"></p>
+            </div>
+
+            <!-- The following div is the Log menu -->
+            <div id="menu_log" style="display: none;">
+                <button onclick="app.clearLog();">Clear Log</button>
+                <br />
+                <!-- A numbered list of log entries -->
+                <ol id="log_list"></ol>
+            </div>
+            
+            <!-- The following div is the settings menu -->
+            <div id="menu_settings" style="display: none;">
+                <p>Test 123, this is the settings menu</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="eventdata.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
