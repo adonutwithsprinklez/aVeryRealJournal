@@ -290,10 +290,8 @@ class Event {
                 text += " " + this.item.modifier["description"];
             }
         }
-
         return text;
     }
-
     _getId() {
         return this.id;
     }
@@ -351,7 +349,8 @@ class Application {
             new Menu("firstTime", "First Time Startup"),
             new Menu("journal", "Generate Event"),
             new Menu("settings", "Settings"),
-            new Menu("log", "Journal")
+            new Menu("log", "Journal"),
+            new Menu("changelog", "Change Log")
         ];
         this.currentMenu = null;
     }
@@ -561,25 +560,21 @@ class Application {
         // Check if there are events that have not yet been used
         if (matchingEvents.length >= 1){
             var event = matchingEvents[Math.floor(Math.random() * matchingEvents.length)];
-            var newEvent = new Event(event["id"], eventQuery["setting"], event["eventText"], event["locations"], event["characters"], event["items"], event["customVariables"], this.modifiers);
-            console.log(newEvent);
-
-            // Log the event
-            var newEntry = new Entry(this.eventlog.length, eventQuery["time"], newEvent);
-            this.eventlog.push(newEntry);
-            this.regenerateEventLog();
+            
         }
         else {
             // If there are no events that have not yet been used, pick one that has been used
             var event = eventsDisqualifiedDueToUsed[Math.floor(Math.random() * eventsDisqualifiedDueToUsed.length)];
-            var newEvent = new Event(event["id"], eventQuery["setting"], event["eventText"], event["locations"], event["characters"], event["items"], event["customVariables"], this.modifiers);
-            console.log(newEvent);
-
-            // Log the event
-            var newEntry = new Entry(this.eventlog.length, eventQuery["time"], newEvent);
-            this.eventlog.push(newEntry);
-            this.regenerateEventLog();
         }
+        
+        var mods = JSON.parse(JSON.stringify(this.modifiers));
+        var newEvent = new Event(event["id"], eventQuery["setting"], event["eventText"], event["locations"], event["characters"], event["items"], event["customVariables"], mods);
+        console.log(newEvent);
+
+        // Log the event
+        var newEntry = new Entry(this.eventlog.length, eventQuery["time"], newEvent);
+        this.eventlog.push(newEntry);
+        this.regenerateEventLog();
     }
 }
 

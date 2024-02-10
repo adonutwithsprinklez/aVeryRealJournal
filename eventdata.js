@@ -24,7 +24,7 @@ const FANTASYEVENTS = {
         {
             "id":2,
             "characterAction":["Resting"],
-            "eventText":"You are resting in your camp when you see $character_a $character_name carrying $item_a $item_name come towards you.",
+            "eventText":"You are taking a short rest when you see $character_a $character_name carrying $item_a $item_name come towards you.",
             "characters":["elf", "dwarf", "human"],
             "items":["sword","axe","bow", "bag_of_gold", "daggers", "gemstone"]
         },
@@ -154,6 +154,30 @@ const FANTASYEVENTS = {
             "characterAction":["Fighting"],
             "eventText":"It is hard to get through $location_a $location_name without coming across something ready to attack you. As you move forward through the $location_name, you realize you're being stalked. One can only guess what is stalking you, but you know deep within that it is not friendly.",
             "locations":["forest","forest_spooky","stream"],
+        },
+        {
+            "id":22,
+            "characterAction":["Resting"],
+            "eventText":"As you rest at your $location_name, you can see $item_a $item_name just a few feet from where you made camp.",
+            "locations":["yourcampsite"],
+            "items":["sword","axe","bow", "daggers", "bag_of_gold", "gemstone"]
+        },
+        {
+            "id":23,
+            "characterAction":["Walking"],
+            "eventText":"You stumble across what appears to be an abandoned $location_a $location_name. You enter and find a statue of $character_a $character_name holding $item_a $item_name. The $character_name is depicted $custom_pose, the $item_name held firmly $character_their their hand.",
+            "locations":["chapel"],
+            "characters":["elf", "dwarf", "human"],
+            "customVariables":{ "pose":["kneeling", "standing", "sitting","running forward", "jumping for joy"] },
+            "items":["sword","axe","bow", "daggers", "bag_of_gold", "gemstone"]
+        },
+        {
+            "id":23,
+            "characterAction":["Walking"],
+            "eventText":"You happen upon what appears to be an abandoned $location_a $location_name. You enter and find a statue of $character_a $character_name. The $character_name is depicted $custom_pose, a regal look on $character_their face.",
+            "locations":["chapel"],
+            "characters":["wolf", "fox", "bear", "dragon"],
+            "customVariables":{ "pose":["roaring","snarling", "sitting calmly", "looking to the sky"] },
         }
     ],
     "locations":{
@@ -198,6 +222,15 @@ const FANTASYEVENTS = {
             ],
             "alwaysModifiers":false,
             "modifiers":[ "warm_camp_location", "cold_camp_location", "badWeather_camp_location", "goodWeather_camp_Location", "humid_spooky_woods", "flowery_forest_location" ]
+        },
+        "chapel":{
+            "name":["Chapel", "Church", "Temple", "Shrine", "Sanctuary", "Cathedral"],
+            "verbage":{ "a":"a", "is":"is" },
+            "description":[
+                "A building with a few pews and a podium."
+            ],
+            "alwaysModifiers":false,
+            "modifiers":[ "warm_camp_location", "cold_camp_location", "badWeather_camp_location", "goodWeather_camp_Location", "big_building", "small_building", "open_building" ]
         }
     },
     "characters":{
@@ -259,7 +292,8 @@ const FANTASYEVENTS = {
             "name":["Dragon", "Red Dragon", "Blue Dragon", "Green Dragon", "Black Dragon", "White Dragon"],
             "verbage":{ "a":"a", "they":"it", "them":"it", "is":"is", "their":"its" },
             "description":[
-                "A massive dragon with shining scales."
+                "A massive dragon with shining scales.",
+                "A regal beast covered in scales and possessing wings and a long tail."
             ],
             "alwaysModifiers":true,
             "modifiers":["large_character","small_character","scarred_character","injured_character","healthy_character", "massive_character"]
@@ -339,6 +373,9 @@ const FANTASYEVENTS = {
         "frigid_spooky_woods": { "name":"Frigid", "description":"Despite the $location_name having still air, you still feel a chill as you progress." },
         "hot_spooky_woods": { "name":"Hot", "description":"The $location_name's stale air causes the heat to build, making you feel hot." },
         "humid_spooky_woods": { "name":"Humid", "description":"The $location_name is humid and water seems to stick to your skin. It is a gross and uncomfortable feeling." },
+        "big_building": { "name":"Big", "description":"The $location_name is truly large, stretching up far into the sky." },
+        "small_building": { "name":"Small", "description":"The $location_name is very small and cramped." },
+        "open_building": { "name":"Open", "description":"The $location_name is extremely open and airy inside." },
 
         "large_character": { "name":"Large", "description":"The $character_name $character_is very large." },
         "small_character": { "name":"Small", "description":"The $character_name $character_is very small." },
